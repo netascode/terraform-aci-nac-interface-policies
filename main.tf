@@ -62,7 +62,7 @@ module "aci_access_fex_interface_profile_auto" {
 
 module "aci_access_leaf_interface_selector_auto" {
   source  = "netascode/access-leaf-interface-selector/aci"
-  version = ">= 0.1.1"
+  version = ">= 0.2.0"
 
   for_each              = { for int in local.node.interfaces : int.port => int if lookup(local.apic, "auto_generate_switch_pod_profiles", local.defaults.apic.auto_generate_switch_pod_profiles) && local.node_role == "leaf" && lookup(local.modules, "aci_access_leaf_interface_selector", true) }
   name                  = replace(format("%s:%s", lookup(each.value, "module", local.defaults.apic.access_policies.leaf_interface_profiles.selectors.port_blocks.from_module), each.value.port), "/^(?P<mod>.+):(?P<port>.+)$/", replace(replace(lookup(local.access_policies, "leaf_interface_selector_name", local.defaults.apic.access_policies.leaf_interface_selector_name), "\\g<mod>", "$mod"), "\\g<port>", "$port"))
@@ -83,7 +83,7 @@ module "aci_access_leaf_interface_selector_auto" {
 
 module "aci_access_leaf_interface_selector_sub_auto" {
   source  = "netascode/access-leaf-interface-selector/aci"
-  version = ">= 0.1.1"
+  version = ">= 0.2.0"
 
   for_each              = { for selector in local.sub_interface_selectors : selector.name => selector }
   name                  = each.value.name
@@ -97,7 +97,7 @@ module "aci_access_leaf_interface_selector_sub_auto" {
 
 module "aci_access_fex_interface_selector_auto" {
   source  = "netascode/access-fex-interface-selector/aci"
-  version = ">= 0.1.0"
+  version = ">= 0.2.0"
 
   for_each          = { for selector in local.fex_interface_selectors : selector.name => selector if local.node_role == "leaf" && lookup(local.modules, "aci_access_fex_interface_selector", true) }
   name              = each.value.name
@@ -113,7 +113,7 @@ module "aci_access_fex_interface_selector_auto" {
 
 module "aci_access_spine_interface_selector_auto" {
   source  = "netascode/access-spine-interface-selector/aci"
-  version = ">= 0.1.0"
+  version = ">= 0.2.0"
 
   for_each          = { for int in local.node.interfaces : int.port => int if lookup(local.apic, "auto_generate_switch_pod_profiles", local.defaults.apic.auto_generate_switch_pod_profiles) && local.node_role == "spine" && lookup(local.modules, "aci_access_spine_interface_selector", true) }
   name              = replace(format("%s:%s", lookup(each.value, "module", local.defaults.apic.access_policies.spine_interface_profiles.selectors.port_blocks.from_module), each.value.port), "/^(?P<mod>.+):(?P<port>.+)$/", replace(replace(lookup(local.access_policies, "spine_interface_selector_name", local.defaults.apic.access_policies.spine_interface_selector_name), "\\g<mod>", "$mod"), "\\g<port>", "$port"))
