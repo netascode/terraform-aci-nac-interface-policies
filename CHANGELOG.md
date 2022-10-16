@@ -1,3 +1,7 @@
+## 0.3.0 (unreleased)
+
+- Pin module dependencies
+
 ## 0.2.0
 
 - Use Terraform 1.3 compatible modules
