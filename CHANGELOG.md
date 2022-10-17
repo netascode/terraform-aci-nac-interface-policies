@@ -1,4 +1,4 @@
-## 0.3.1 (unreleased)
+## 0.3.1
 
 - Add module flag to sub-port selectors
 
