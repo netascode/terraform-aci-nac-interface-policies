@@ -1,3 +1,7 @@
+## 0.3.1 (unreleased)
+
+- Add module flag to sub-port selectors
+
 ## 0.3.0
 
 - Pin module dependencies

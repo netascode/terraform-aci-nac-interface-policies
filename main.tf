@@ -85,7 +85,7 @@ module "aci_access_leaf_interface_selector_sub_auto" {
   source  = "netascode/access-leaf-interface-selector/aci"
   version = "0.2.0"
 
-  for_each              = { for selector in local.sub_interface_selectors : selector.name => selector }
+  for_each              = { for selector in local.sub_interface_selectors : selector.name => selector if local.node_role == "leaf" && lookup(local.modules, "aci_access_leaf_interface_selector", true) }
   name                  = each.value.name
   interface_profile     = each.value.interface_profile
   fex_id                = each.value.fex_id
