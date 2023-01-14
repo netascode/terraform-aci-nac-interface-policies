@@ -6,8 +6,8 @@ locals {
   node_policies   = try(local.apic.node_policies, {})
   node            = [for node in try(local.apic.interface_policies.nodes, []) : node if node.id == var.node_id][0]
   node_id         = local.node.id
-  node_name       = [for node in try(local.node_policies.nodes, []) : try(node.name, "") if node.id == local.node_id][0]
-  node_role       = [for node in try(local.node_policies.nodes, []) : try(node.role, "") if node.id == local.node_id][0]
+  node_name       = try([for node in local.node_policies.nodes : node.name if node.id == local.node_id][0], "")
+  node_role       = try([for node in local.node_policies.nodes : node.role if node.id == local.node_id][0], "")
 
   fex_interface_selectors = flatten([
     for fex in try(local.node.fexes, []) : [
