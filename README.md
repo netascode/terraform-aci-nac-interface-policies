@@ -15,6 +15,8 @@ A comprehensive example using this module is available here: https://github.com/
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
 | <a name="requirement_aci"></a> [aci](#requirement\_aci) | >= 2.0.0 |
+| <a name="requirement_null"></a> [null](#requirement\_null) | >= 3.2.1 |
+| <a name="requirement_utils"></a> [utils](#requirement\_utils) | >= 0.2.4 |
 
 ## Inputs
 
@@ -22,8 +24,11 @@ A comprehensive example using this module is available here: https://github.com/
 |------|-------------|------|---------|:--------:|
 | <a name="input_model"></a> [model](#input\_model) | Model data. | `any` | n/a | yes |
 | <a name="input_node_id"></a> [node\_id](#input\_node\_id) | Node ID. | `number` | n/a | yes |
+| <a name="input_dependencies"></a> [dependencies](#input\_dependencies) | This variable can be used to express explicit dependencies between modules. | `list(string)` | `[]` | no |
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_critical_resources_done"></a> [critical\_resources\_done](#output\_critical\_resources\_done) | This dummy output can be used to express dependencies between NaC modules using the `dependencies` variable. |
 <!-- END_TF_DOCS -->

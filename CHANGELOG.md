@@ -1,3 +1,8 @@
+## 0.4.0 (unreleased)
+
+- Include default values in module
+- BREAKING CHANGE: `depends_on` can no longer be used to express explicit dependencies between NaC modules. The variable `dependencies` and the output `critical_resources_done` can be used instead, to ensure a certain order of operations.
+
 ## 0.3.2
 
 - Add colon to allowed characters of leaf interface selector names

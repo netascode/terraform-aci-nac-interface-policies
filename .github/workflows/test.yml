@@ -38,20 +38,20 @@ jobs:
       - name: Pre-commit Checks
         uses: pre-commit/action@v3.0.0
 
-      # - name: Terraform Test
-      #   id: test
-      #   env:
-      #     ACI_USERNAME: ${{ secrets.ACI_USERNAME }}
-      #     ACI_PASSWORD: ${{ secrets.ACI_PASSWORD }}
-      #     ACI_URL: ${{ secrets.ACI_URL }}
-      #   run: terraform test -junit-xml=test-report.xml
+      - name: Terraform Test
+        id: test
+        env:
+          ACI_USERNAME: ${{ secrets.ACI_USERNAME }}
+          ACI_PASSWORD: ${{ secrets.ACI_PASSWORD }}
+          ACI_URL: ${{ secrets.ACI_URL }}
+        run: terraform test -junit-xml=test-report.xml
 
-      # - name: Publish Integration Test Results
-      #   uses: EnricoMi/publish-unit-test-result-action@v1
-      #   if: always()
-      #   with:
-      #     files: test-report.xml
-      #     check_name: 'Integration Test Results'
+      - name: Publish Integration Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          junit_files: test-report.xml
+          check_name: 'Integration Test Results'
 
       - name: Webex Notification
         if: always()
