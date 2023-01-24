@@ -53,13 +53,8 @@ locals {
   ])
 }
 
-module "defaults" {
-  source  = "netascode/nac-defaults/null"
-  version = "0.1.0"
-}
-
 data "utils_yaml_merge" "defaults" {
-  input = [yamlencode(module.defaults.defaults), yamlencode(local.user_defaults)]
+  input = [file("${path.module}/defaults/defaults.yaml"), yamlencode(local.user_defaults)]
 }
 
 resource "null_resource" "dependencies" {
